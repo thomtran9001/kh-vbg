@@ -1,0 +1,12 @@
+config {
+  type: "table",
+  uniqueKey: ['service_id'],
+  schema: "analytic_service",
+  bigquery: {
+    labels: {
+      workflow: "analytic_service"
+    }
+  }
+}
+
+SELECT * FROM ${ref('raw_service')}

@@ -1,0 +1,13 @@
+config {
+  type: "incremental",
+  uniqueKey: ["task_id"],
+  schema: "analytic_wework",
+  bigquery: {
+    partitionBy: "DATE(last_update)",
+    labels: {
+      workflow: "analytic_wework"
+    }
+  }
+}
+
+SELECT * EXCEPT(form, cached_subtasks) FROM ${ref('raw_task')}

@@ -1,0 +1,12 @@
+config {
+  type: "table",
+  uniqueKey: ['id'],
+  schema: "analytic_wework",
+  bigquery: {
+    labels: {
+      workflow: "analytic_wework"
+    }
+  }
+}
+
+SELECT DISTINCT * FROM ${ref('raw_cong_tac_dia_chat')}

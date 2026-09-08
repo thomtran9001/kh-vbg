@@ -1,0 +1,13 @@
+config {
+  type: "table",
+  uniqueKey: ['ticket_id'],
+  schema: "analytic_service",
+  bigquery: {
+    labels: {
+      workflow: "analytic_service"
+    }
+  }
+}
+
+SELECT DISTINCT * FROM ${ref('raw_service_ticket_assignees')}
+  

@@ -1,0 +1,16 @@
+config {
+  type: "incremental",
+  uniqueKey: ['id'],
+  schema: "analytic_wework",
+  bigquery: {
+    partitionBy: "DATE(last_update)",
+    labels: {
+      workflow: "analytic_wework"
+    }
+  }
+}
+
+SELECT
+  * EXCEPT(last_update)
+  ,MAX(last_update) OVER (PARTITION BY id) as last_update
+FROM ${ref('raw_cached_subtasks')}

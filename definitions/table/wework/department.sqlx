@@ -1,0 +1,18 @@
+config {
+  type: "table",
+  uniqueKey: ['project_id'],
+  schema: "analytic_wework",
+  bigquery: {
+    labels: {
+      workflow: "analytic_wework"
+    }
+  }
+}
+
+SELECT  distinct
+  cast(replace(id, '.0', '') as int64) dept_id
+  ,name
+  ,path
+  ,alias
+  ,CAST(TIMESTAMP_ADD(TIMESTAMP_SECONDS(cast(replace(since, '.0', '') as int64)), INTERVAL 7 HOUR) AS DATETIME) since
+FROM `kh-dia-chat-vietbac.airbyte_wework.dept` 

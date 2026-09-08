@@ -1,0 +1,8 @@
+{
+  "defaultSchema": "query",
+  "assertionSchema": "query",
+  "warehouse": "bigquery",
+  "defaultDatabase": "kh-dia-chat-vietbac",
+  "defaultLocation": "us-central1"
+}
+    

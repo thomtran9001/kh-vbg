@@ -1,0 +1,12 @@
+config {
+  type: "table",
+  uniqueKey: ['id'],
+  schema: "analytic_service",
+  bigquery: {
+    labels: {
+      workflow: "analytic_service"
+    }
+  }
+}
+
+SELECT DISTINCT * FROM ${ref('raw_cac_cong_tac_diachatthuyvan')}

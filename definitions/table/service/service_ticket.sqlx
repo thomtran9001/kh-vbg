@@ -1,0 +1,18 @@
+config {
+  type: "table",
+  uniqueKey: ['ticket_id'],
+  schema: "analytic_service",
+  bigquery: {
+    labels: {
+      workflow: "analytic_service"
+    }
+  }
+}
+
+SELECT DISTINCT * EXCEPT(row_number,form, assignees)
+FROM (
+    SELECT * ,
+        ROW_NUMBER() OVER (PARTITION BY ticket_id ORDER BY last_update DESC) AS row_number
+    FROM ${ref('raw_service_ticket')}
+    ) t
+WHERE t.row_number = 1
