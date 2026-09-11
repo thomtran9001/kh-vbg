@@ -106,11 +106,15 @@ models:
 
 
 sources:
-  - name: raw
-    schema: public
+  - name: raw_service
+    schema: raw_base_service
     tables:
       - name: service
       - name: ticket
+
+  - name: raw
+    schema: public
+    tables:
       - name: task
       - name: project
       - name: dept

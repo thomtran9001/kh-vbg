@@ -23,5 +23,5 @@ SELECT
     WHEN (select string_agg(cat ->> 'thau', ',') from jsonb_array_elements(coalesce((properties::jsonb -> 'categories'), '[]'::jsonb)) as cat) LIKE '%71%' THEN 'Tư vấn'
     ELSE NULL
   END AS tag
-FROM {{ source('raw', 'ticket') }}  t
+FROM {{ source('raw_service', 'ticket') }}  t
 order by since asc
