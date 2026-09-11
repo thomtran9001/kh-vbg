@@ -1,0 +1,105 @@
+version: 2
+
+models:
+  - name: service_cong_tac_dia_chat
+    description: "Generated from definitions/table/service/cong_tac_dia_chat.sqlx"
+  - name: service_cong_tac_dia_vat_ly
+    description: "Generated from definitions/table/service/cong_tac_dia_vat_ly.sqlx"
+  - name: service_cong_tac_diachatthuyvan
+    description: "Generated from definitions/table/service/cong_tac_diachatthuyvan.sqlx"
+  - name: service_cong_tac_gia_cong_mau
+    description: "Generated from definitions/table/service/cong_tac_gia_cong_mau.sqlx"
+  - name: service_cong_tac_khai_dao
+    description: "Generated from definitions/table/service/cong_tac_khai_dao.sqlx"
+  - name: service_cong_tac_khoan_may
+    description: "Generated from definitions/table/service/cong_tac_khoan_may.sqlx"
+  - name: service_cong_tac_trac_dia
+    description: "Generated from definitions/table/service/cong_tac_trac_dia.sqlx"
+  - name: service_gia_chao
+    description: "Generated from definitions/table/service/gia_chao.sqlx"
+  - name: service_service
+    description: "Generated from definitions/table/service/service.sqlx"
+  - name: service_service_ticket
+    description: "Generated from definitions/table/service/service_ticket.sqlx"
+  - name: service_service_ticket_assignee
+    description: "Generated from definitions/table/service/service_ticket_assignee.sqlx"
+  - name: service_service_ticket_form
+    description: "Generated from definitions/table/service/service_ticket_form.sqlx"
+  - name: wework_cong_tac_dia_chat
+    description: "Generated from definitions/table/wework/cong_tac_dia_chat.sqlx"
+  - name: wework_cong_tac_dia_vat_ly
+    description: "Generated from definitions/table/wework/cong_tac_dia_vat_ly.sqlx"
+  - name: wework_cong_tac_diachatthuyvan
+    description: "Generated from definitions/table/wework/cong_tac_diachatthuyvan.sqlx"
+  - name: wework_cong_tac_gia_cong_mau
+    description: "Generated from definitions/table/wework/cong_tac_gia_cong_mau.sqlx"
+  - name: wework_cong_tac_khai_dao
+    description: "Generated from definitions/table/wework/cong_tac_khai_dao.sqlx"
+  - name: wework_cong_tac_khoan_may
+    description: "Generated from definitions/table/wework/cong_tac_khoan_may.sqlx"
+  - name: wework_cong_tac_trac_dia
+    description: "Generated from definitions/table/wework/cong_tac_trac_dia.sqlx"
+  - name: wework_department
+    description: "Generated from definitions/table/wework/department.sqlx"
+  - name: wework_ke_hoach_quy
+    description: "Generated from definitions/table/wework/ke_hoach_quy.sqlx"
+  - name: wework_ke_hoach_thang
+    description: "Generated from definitions/table/wework/ke_hoach_thang.sqlx"
+  - name: wework_project
+    description: "Generated from definitions/table/wework/project.sqlx"
+  - name: wework_task
+    description: "Generated from definitions/table/wework/task.sqlx"
+  - name: wework_task_cached_subtasks
+    description: "Generated from definitions/table/wework/task_cached_subtasks.sqlx"
+  - name: wework_task_form
+    description: "Generated from definitions/table/wework/task_form.sqlx"
+  - name: wework_tasklist
+    description: "Generated from definitions/table/wework/tasklist.sqlx"
+  - name: service_raw_cac_cong_tac_dia_chat
+    description: "Generated from definitions/view/service/raw_cac_cong_tac_dia_chat.sqlx"
+  - name: service_raw_cac_cong_tac_dia_vat_ly
+    description: "Generated from definitions/view/service/raw_cac_cong_tac_dia_vat_ly.sqlx"
+  - name: service_raw_cac_cong_tac_diachatthuyvan
+    description: "Generated from definitions/view/service/raw_cac_cong_tac_diachatthuyvan.sqlx"
+  - name: service_raw_cac_cong_tac_gia_cong_mau
+    description: "Generated from definitions/view/service/raw_cac_cong_tac_gia_cong_mau.sqlx"
+  - name: service_raw_cac_cong_tac_khai_dao
+    description: "Generated from definitions/view/service/raw_cac_cong_tac_khai_dao.sqlx"
+  - name: service_raw_cac_cong_tac_khoan_may
+    description: "Generated from definitions/view/service/raw_cac_cong_tac_khoan_may.sqlx"
+  - name: service_raw_cac_cong_tac_trac_dia
+    description: "Generated from definitions/view/service/raw_cac_cong_tac_trac_dia.sqlx"
+  - name: service_raw_gia_chao
+    description: "Generated from definitions/view/service/raw_gia_chao.sqlx"
+  - name: service_raw_service
+    description: "Generated from definitions/view/service/raw_service.sqlx"
+  - name: service_raw_service_ticket
+    description: "Generated from definitions/view/service/raw_service_ticket.sqlx"
+  - name: service_raw_service_ticket_assignees
+    description: "Generated from definitions/view/service/raw_service_ticket_assignees.sqlx"
+  - name: service_raw_service_ticket_form
+    description: "Generated from definitions/view/service/raw_service_ticket_form.sqlx"
+  - name: wework_raw_cached_subtasks
+    description: "Generated from definitions/view/wework/raw_cached_subtasks.sqlx"
+  - name: wework_raw_cong_tac_dia_chat
+    description: "Generated from definitions/view/wework/raw_cong_tac_dia_chat.sqlx"
+  - name: wework_raw_cong_tac_dia_vat_ly
+    description: "Generated from definitions/view/wework/raw_cong_tac_dia_vat_ly.sqlx"
+  - name: wework_raw_cong_tac_diachatthuyvan
+    description: "Generated from definitions/view/wework/raw_cong_tac_diachatthuyvan.sqlx"
+  - name: wework_raw_cong_tac_gia_cong_mau
+    description: "Generated from definitions/view/wework/raw_cong_tac_gia_cong_mau.sqlx"
+  - name: wework_raw_cong_tac_khai_dao
+    description: "Generated from definitions/view/wework/raw_cong_tac_khai_dao.sqlx"
+  - name: wework_raw_cong_tac_khoan_may
+    description: "Generated from definitions/view/wework/raw_cong_tac_khoan_may.sqlx"
+  - name: wework_raw_cong_tac_trac_dia
+    description: "Generated from definitions/view/wework/raw_cong_tac_trac_dia.sqlx"
+  - name: wework_raw_ke_hoach_quy
+    description: "Generated from definitions/view/wework/raw_ke_hoach_quy.sqlx"
+  - name: wework_raw_ke_hoach_thang
+    description: "Generated from definitions/view/wework/raw_ke_hoach_thang.sqlx"
+  - name: wework_raw_task
+    description: "Generated from definitions/view/wework/raw_task.sqlx"
+  - name: wework_raw_task_form
+    description: "Generated from definitions/view/wework/raw_task_form.sqlx"

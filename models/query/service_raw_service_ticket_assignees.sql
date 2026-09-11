@@ -1,0 +1,13 @@
+{{ config(materialized='view', schema='query') }}
+
+SELECT
+ ticket_id,
+DATETIME(TIMESTAMP_SECONDS(SAFE_CAST(JSON_VALUE(item, '$.deadline') AS INT64)), 'Asia/Ho_Chi_Minh') AS deadline,
+DATETIME(TIMESTAMP_SECONDS(SAFE_CAST(JSON_VALUE(item, '$.last_update') AS INT64)), 'Asia/Ho_Chi_Minh') AS last_update,
+  JSON_VALUE(item, '$.note') AS note,
+  SAFE_CAST(JSON_VALUE(item, '$.signed') AS INT64) AS signed,
+  DATETIME(TIMESTAMP_SECONDS(SAFE_CAST(JSON_VALUE(item, '$.since') AS INT64)), 'Asia/Ho_Chi_Minh') AS since,
+  DATETIME(TIMESTAMP_SECONDS(SAFE_CAST(JSON_VALUE(item, '$.started_at') AS INT64)), 'Asia/Ho_Chi_Minh') AS started_at,
+  JSON_VALUE(item, '$.username') AS username
+FROM {{ ref('service_raw_service_ticket') }}  t,
+UNNEST(JSON_QUERY_ARRAY(assignees)) AS item
