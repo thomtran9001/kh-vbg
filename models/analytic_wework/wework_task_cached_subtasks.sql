@@ -1,6 +1,5 @@
 {{ config(materialized='incremental', schema='analytic_wework', unique_key='id') }}
 
-SELECT
-  *
-  ,MAX(last_update) OVER (PARTITION BY id) as last_update
+SELECT DISTINCT ON (id) *
 FROM {{ ref('wework_raw_cached_subtasks') }}
+ORDER BY id, last_update DESC
