@@ -45,10 +45,10 @@ FROM (
   FROM (SELECT task_id, last_update, convert_from(decode(value, 'base64'), 'UTF8') value FROM {{ ref('wework_raw_task_form') }} job_form 
       WHERE name = 'Công tác trắc địa' 
             -- and type = 'input-table' 
-            AND NOT ((value)::text ~ '[áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵđÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴĐ]'))
+            AND NOT ((value)::text ~ '[áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵđÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴĐ]')
             AND (value)::text not like '%{}%'
-            AND (value not like '%{}%') 
-            AND (value not like '% %') 
-            AND (value not like '%1.%'))
+            AND (value::text not like '%{}%') 
+            AND (value::text not like '% %') 
+            AND (value::text not like '%1.%'))
 ) s
 CROSS JOIN LATERAL jsonb_array_elements(coalesce(json_array::jsonb, '[]'::jsonb)) AS json

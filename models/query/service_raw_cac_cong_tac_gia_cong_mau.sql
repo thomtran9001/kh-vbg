@@ -80,10 +80,10 @@ FROM (
   FROM (SELECT ticket_id, last_update, convert_from(decode(value, 'base64'), 'UTF8') value FROM {{ ref('service_raw_service_ticket_form') }} job_form 
       WHERE keys = 'service_cac_cong_tac_diachatthuyvan' 
             -- and type = 'input-table' 
-            AND NOT ((value)::text ~ '[áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵđÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴĐ]'))
+            AND NOT ((value)::text ~ '[áàảãạăắằẳẵặâấầẩẫậéèẻẽẹêếềểễệíìỉĩịóòỏõọôốồổỗộơớờởỡợúùủũụưứừửữựýỳỷỹỵđÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬÉÈẺẼẸÊẾỀỂỄỆÍÌỈĨỊÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢÚÙỦŨỤƯỨỪỬỮỰÝỲỶỸỴĐ]')
             AND (value)::text not like '%{}%'
-            AND (value not like '%{}%') 
-            AND (value not like '% %') 
-            AND (value not like '%1.%'))
+            AND (value::text not like '%{}%') 
+            AND (value::text not like '% %') 
+            AND (value::text not like '%1.%'))
 ) s
 CROSS JOIN LATERAL jsonb_array_elements(coalesce(json_array::jsonb, '[]'::jsonb)) AS json

@@ -5,7 +5,7 @@ SELECT
 {{ appbi_epoch_hcm("((item)::jsonb ->> 'deadline')") }} AS deadline,
 {{ appbi_epoch_hcm("((item)::jsonb ->> 'last_update')") }} AS last_update,
   ((item)::jsonb ->> 'note') AS note,
-  SAFE_{{ appbi_safe_bigint("((item)::jsonb ->> 'signed')") }} AS signed,
+  {{ appbi_safe_bigint("((item)::jsonb ->> 'signed')") }} AS signed,
   {{ appbi_epoch_hcm("((item)::jsonb ->> 'since')") }} AS since,
   {{ appbi_epoch_hcm("((item)::jsonb ->> 'started_at')") }} AS started_at,
   ((item)::jsonb ->> 'username') AS username
