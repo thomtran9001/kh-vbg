@@ -1,6 +1,6 @@
 {{ config(materialized='table', schema='analytic_service', unique_key='ticket_id') }}
 
-SELECT DISTINCT * EXCEPT(row_number,form, assignees)
+SELECT DISTINCT *
 FROM (
     SELECT * ,
         ROW_NUMBER() OVER (PARTITION BY ticket_id ORDER BY last_update DESC) AS row_number

@@ -103,3 +103,15 @@ models:
     description: "Generated from definitions/view/wework/raw_task.sqlx"
   - name: wework_raw_task_form
     description: "Generated from definitions/view/wework/raw_task_form.sqlx"
+
+
+sources:
+  - name: raw
+    schema: public
+    tables:
+      - name: service
+      - name: ticket
+      - name: task
+      - name: project
+      - name: dept
+      - name: tasklist

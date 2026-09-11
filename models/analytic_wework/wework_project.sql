@@ -1,20 +1,20 @@
 {{ config(materialized='table', schema='analytic_wework', unique_key='project_id') }}
 
 SELECT  distinct
-  cast(replace(a.id, '.0', '') as int64) project_id
+  {{ appbi_safe_bigint('a.id') }} project_id
   ,a.name
   ,b.name as dept_name
   ,a.path
-  ,cast(a.status as int64) status
-  ,cast(a.dept_id as int64) dept_id
+  ,{{ appbi_safe_bigint('a.status') }} status
+  ,{{ appbi_safe_bigint('a.dept_id') }} dept_id
   ,a.content
   ,a.category
-  ,cast(JSON_EXTRACT_SCALAR(a.stats, '$.active') as int64) total_active
-  ,cast(JSON_EXTRACT_SCALAR(a.stats, '$.complete') as int64) total_complete
-  ,cast(JSON_EXTRACT_SCALAR(a.stats, '$.overdue') as int64) total_overdue
-  ,CASE WHEN a.stime = '0' OR a.stime IS NULL THEN NULL ELSE CAST(TIMESTAMP_ADD(TIMESTAMP_SECONDS(CAST(REPLACE(a.stime, '.0', '') AS INT64)), INTERVAL 7 HOUR) AS DATETIME) END AS stime
-  ,CASE WHEN a.etime = '0' OR a.etime IS NULL THEN NULL ELSE CAST(TIMESTAMP_ADD(TIMESTAMP_SECONDS(CAST(REPLACE(a.etime, '.0', '') AS INT64)), INTERVAL 7 HOUR) AS DATETIME) END AS etime
-  ,CAST(TIMESTAMP_ADD(TIMESTAMP_SECONDS(cast(replace(a.since, '.0', '') as int64)), INTERVAL 7 HOUR) AS DATETIME) since
-  ,CAST(TIMESTAMP_ADD(TIMESTAMP_SECONDS(cast(replace(a.last_update, '.0', '') as int64)), INTERVAL 7 HOUR) AS DATETIME) last_update
-FROM `kh-dia-chat-vietbac.airbyte_wework.project`  a
-LEFT JOIN `kh-duoc-cuu-long.airbyte_wework.dept` b on a.dept_id = b.id 
+  ,{{ appbi_safe_bigint("((a.stats)::jsonb ->> 'active')") }} total_active
+  ,{{ appbi_safe_bigint("((a.stats)::jsonb ->> 'complete')") }} total_complete
+  ,{{ appbi_safe_bigint("((a.stats)::jsonb ->> 'overdue')") }} total_overdue
+  ,CASE WHEN a.stime = '0' OR a.stime IS NULL THEN NULL ELSE {{ appbi_epoch_hcm('a.stime') }} END AS stime
+  ,CASE WHEN a.etime = '0' OR a.etime IS NULL THEN NULL ELSE {{ appbi_epoch_hcm('a.etime') }} END AS etime
+  ,{{ appbi_epoch_hcm('a.since') }} since
+  ,{{ appbi_epoch_hcm('a.last_update') }} last_update
+FROM {{ source('raw', 'project') }}  a
+LEFT JOIN {{ source('raw', 'dept') }} b on a.dept_id = b.id 

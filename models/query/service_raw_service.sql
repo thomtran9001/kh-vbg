@@ -1,7 +1,6 @@
 {{ config(materialized='view', schema='query') }}
 
 SELECT DISTINCT
-  CAST(id AS INT64) service_id,
+  {{ appbi_safe_bigint('id') }} service_id,
   name service_name
-FROM `kh-dia-chat-vietbac.airbyte_service.service` 
--- WHERE TIMESTAMP_TRUNC(_airbyte_extracted_at, DAY) = TIMESTAMP("2024-07-08")
+FROM {{ source('raw', 'service') }} 

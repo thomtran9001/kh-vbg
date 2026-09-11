@@ -1,14 +1,14 @@
 {{ config(materialized='view', schema='query') }}
 
 SELECT
-  CAST(JSON_EXTRACT_SCALAR(json, '$.id') AS INT64)  id
+  {{ appbi_safe_bigint("((json)::jsonb ->> 'id')") }}  id
   ,task_id
   ,last_update
-  ,JSON_EXTRACT_SCALAR(json, '$.name')  name
-  ,CAST(JSON_EXTRACT_SCALAR(json, '$.creator_id') AS INT64)  creator_id
-  ,CAST(JSON_EXTRACT_SCALAR(json, '$.user_id') AS INT64)  user_id
-  ,CAST(JSON_EXTRACT_SCALAR(json, '$.review')  AS INT64) review
-  ,CAST(JSON_EXTRACT_SCALAR(json, '$.status') AS INT64)  status
-  ,CAST(TIMESTAMP_ADD(TIMESTAMP_SECONDS(CAST(JSON_EXTRACT_SCALAR(json, '$.deadline') AS INT64)), INTERVAL 7 HOUR) AS DATETIME) deadline
-FROM {{ ref('wework_raw_task') }},
-  UNNEST(JSON_EXTRACT_ARRAY(cached_subtasks)) AS json
+  ,((json)::jsonb ->> 'name')  name
+  ,{{ appbi_safe_bigint("((json)::jsonb ->> 'creator_id')") }}  creator_id
+  ,{{ appbi_safe_bigint("((json)::jsonb ->> 'user_id')") }}  user_id
+  ,{{ appbi_safe_bigint("((json)::jsonb ->> 'review')") }} review
+  ,{{ appbi_safe_bigint("((json)::jsonb ->> 'status')") }}  status
+  ,{{ appbi_epoch_hcm("((json)::jsonb ->> 'deadline')") }} deadline
+FROM {{ ref('wework_raw_task') }}
+CROSS JOIN LATERAL jsonb_array_elements(coalesce(cached_subtasks::jsonb, '[]'::jsonb)) AS json
