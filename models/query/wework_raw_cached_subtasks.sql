@@ -1,4 +1,4 @@
-{{ config(materialized='view', schema='query') }}
+{{ config(materialized='table', schema='query') }}
 
 SELECT
   {{ appbi_safe_bigint("((json)::jsonb ->> 'id')") }}  id

@@ -1,4 +1,4 @@
-{{ config(materialized='view', schema='query') }}
+{{ config(materialized='table', schema='query') }}
 
 SELECT
   MD5(CONCAT(
